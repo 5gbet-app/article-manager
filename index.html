@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章管理模块 - Markdown编辑器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#" class="logo">📝 文章管理</a>
+            </div>
+            <div class="header-buttons">
+                <a href="./test.html" class="btn btn-primary">帮助</a>
+                <a href="./test.html" class="btn btn-secondary">关于</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Article Manager Section -->
+    <section class="article-manager-section">
+        <div class="article-manager-container">
+            <div class="article-manager-header">
+                <h1 class="article-manager-title">📝 文章管理模块</h1>
+                <p class="article-manager-subtitle">创建和管理博客文章，支持所有高级功能</p>
+            </div>
+
+            <form id="articleForm">
+                <!-- 基本信息 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">📋 基本信息</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">文章标题 *</label>
+                            <input type="text" class="form-input" id="title" name="title" required placeholder="输入文章标题">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">发布日期 *</label>
+                            <input type="date" class="form-input" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">作者 *</label>
+                            <input type="text" class="form-input" id="author" name="author" required placeholder="作者名称" value="作者">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">浏览量</label>
+                            <input type="number" class="form-input" id="views" name="views" placeholder="浏览量" value="1000">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">阅读时间（分钟）</label>
+                            <input type="number" class="form-input" id="reading_time" name="reading_time" placeholder="阅读时间" value="5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 标签管理 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">🏷️ 标签管理</h3>
+                    <div class="form-group">
+                        <label class="form-label">添加标签</label>
+                        <div style="display: flex; gap: 10px;">
+                            <input type="text" class="form-input" id="tagInput" placeholder="输入标签名称">
+                            <button type="button" class="add-button" onclick="addTag()">添加标签</button>
+                        </div>
+                        <div class="tags-container" id="tagsContainer"></div>
+                    </div>
+                </div>
+
+                <!-- 摘要 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">📝 文章摘要</h3>
+                    <div class="form-group">
+                        <label class="form-label">摘要内容 *</label>
+                        <textarea class="form-textarea" id="excerpt" name="excerpt" required placeholder="输入文章摘要，用于列表页显示"></textarea>
+                    </div>
+                </div>
+
+                <!-- 封面图片 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">🖼️ 封面图片</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">封面图片URL</label>
+                            <input type="url" class="form-input" id="image_cover" name="image_cover" placeholder="https://example.com/images/cover.webp">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">封面图片Alt文本</label>
+                            <input type="text" class="form-input" id="image_cover_alt" name="image_cover_alt" placeholder="封面图片描述">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 视频和游戏 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">🎮 视频和游戏</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="form-label">视频URL</label>
+                            <input type="url" class="form-input" id="video_url" name="video_url" placeholder="视频嵌入链接">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">游戏URL</label>
+                            <input type="url" class="form-input" id="game_url" name="game_url" placeholder="游戏试玩链接">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">游戏标题</label>
+                            <input type="text" class="form-input" id="game_title" name="game_title" placeholder="游戏名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">游戏图片</label>
+                            <input type="url" class="form-input" id="game_image" name="game_image" placeholder="游戏封面图片">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 内容图片 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">🖼️ 内容图片</h3>
+                    <div class="form-group">
+                        <label class="form-label">添加内容图片</label>
+                        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                            <input type="url" class="form-input" id="imageUrl" placeholder="图片URL">
+                            <input type="text" class="form-input" id="imageAlt" placeholder="图片Alt文本">
+                            <button type="button" class="add-button" onclick="addImage()">添加图片</button>
+                        </div>
+                        <div class="images-container" id="imagesContainer"></div>
+                    </div>
+                </div>
+
+                <!-- 文章内容 -->
+                <div class="form-section">
+                    <h3 class="form-section-title">📄 文章内容</h3>
+                    <div class="form-group">
+                        <label class="form-label">文章内容 *</label>
+                        <textarea class="form-textarea" id="content" name="content" required placeholder="输入文章内容，支持Markdown格式" style="min-height: 300px;"></textarea>
+                    </div>
+                </div>
+
+                <!-- 提交按钮 -->
+                <div class="submit-section">
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-save"></i> 生成Markdown文件
+                    </button>
+                </div>
+            </form>
+
+            <!-- 预览区域 -->
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <h3 class="preview-title">📋 Markdown预览</h3>
+                <div class="preview-content" id="previewContent"></div>
+            </div>
+
+            <!-- 消息提示 -->
+            <div id="alertContainer"></div>
+        </div>
+    </section>
+
+    <script>
+        // 全局变量
+        let tags = [];
+        let images = [];
+
+        // 页面加载时设置默认日期
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('date').value = today;
+        });
+
+        // 添加标签
+        function addTag() {
+            const tagInput = document.getElementById('tagInput');
+            const tag = tagInput.value.trim();
+            
+            if (tag && !tags.includes(tag)) {
+                tags.push(tag);
+                updateTagsDisplay();
+                tagInput.value = '';
+            }
+        }
+
+        // 更新标签显示
+        function updateTagsDisplay() {
+            const container = document.getElementById('tagsContainer');
+            container.innerHTML = '';
+            
+            tags.forEach(tag => {
+                const tagElement = document.createElement('div');
+                tagElement.className = 'tag-item';
+                tagElement.innerHTML = `
+                    <span>${tag}</span>
+                    <button type="button" class="tag-remove" onclick="removeTag('${tag}')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                container.appendChild(tagElement);
+            });
+        }
+
+        // 移除标签
+        function removeTag(tag) {
+            tags = tags.filter(t => t !== tag);
+            updateTagsDisplay();
+        }
+
+        // 添加图片
+        function addImage() {
+            const urlInput = document.getElementById('imageUrl');
+            const altInput = document.getElementById('imageAlt');
+            const url = urlInput.value.trim();
+            const alt = altInput.value.trim();
+            
+            if (url) {
+                images.push({ url, alt });
+                updateImagesDisplay();
+                urlInput.value = '';
+                altInput.value = '';
+            }
+        }
+
+        // 更新图片显示
+        function updateImagesDisplay() {
+            const container = document.getElementById('imagesContainer');
+            container.innerHTML = '';
+            
+            images.forEach((image, index) => {
+                const imageElement = document.createElement('div');
+                imageElement.className = 'image-item';
+                imageElement.innerHTML = `
+                    <div>
+                        <strong>URL:</strong> ${image.url}
+                    </div>
+                    <div>
+                        <strong>Alt:</strong> ${image.alt || '无描述'}
+                    </div>
+                    <button type="button" class="image-remove" onclick="removeImage(${index})">
+                        <i class="fas fa-trash"></i> 删除
+                    </button>
+                `;
+                container.appendChild(imageElement);
+            });
+        }
+
+        // 移除图片
+        function removeImage(index) {
+            images.splice(index, 1);
+            updateImagesDisplay();
+        }
+
+        // 生成Markdown内容
+        function generateMarkdown() {
+            const formData = new FormData(document.getElementById('articleForm'));
+            const data = Object.fromEntries(formData);
+            
+            // 构建YAML front matter
+            let yaml = '---\n';
+            yaml += `title: "${data.title}"\n`;
+            yaml += `date: "${data.date}"\n`;
+            yaml += `author: "${data.author}"\n`;
+            yaml += `tags: [${tags.map(tag => `'${tag}'`).join(', ')}]\n`;
+            yaml += `excerpt: "${data.excerpt}"\n`;
+            yaml += `views: ${data.views || 1000}\n`;
+            
+            if (data.image_cover) {
+                yaml += `image_cover: "${data.image_cover}"\n`;
+            }
+            if (data.image_cover_alt) {
+                yaml += `image_cover_alt: "${data.image_cover_alt}"\n`;
+            }
+            if (data.video_url) {
+                yaml += `video_url: "${data.video_url}"\n`;
+            } else {
+                yaml += `video_url: ""\n`;
+            }
+            if (data.game_url) {
+                yaml += `game_url: "${data.game_url}"\n`;
+            } else {
+                yaml += `game_url: ""\n`;
+            }
+            if (data.game_title) {
+                yaml += `game_title: "${data.game_title}"\n`;
+            } else {
+                yaml += `game_title: ""\n`;
+            }
+            if (data.game_image) {
+                yaml += `game_image: "${data.game_image}"\n`;
+            } else {
+                yaml += `game_image: ""\n`;
+            }
+            
+            // 添加图片数组
+            if (images.length > 0) {
+                yaml += `images: [\n`;
+                images.forEach((image, index) => {
+                    yaml += `  {\n`;
+                    yaml += `    "url": "${image.url}",\n`;
+                    yaml += `    "alt": "${image.alt}"\n`;
+                    yaml += `  }${index < images.length - 1 ? ',' : ''}\n`;
+                });
+                yaml += `]\n`;
+            } else {
+                yaml += `images: []\n`;
+            }
+            
+            yaml += '---\n\n';
+            
+            // 添加文章内容
+            const markdown = yaml + data.content;
+            
+            return markdown;
+        }
+
+        // 显示预览
+        function showPreview() {
+            const markdown = generateMarkdown();
+            document.getElementById('previewContent').textContent = markdown;
+            document.getElementById('previewSection').style.display = 'block';
+        }
+
+        // 显示消息
+        function showAlert(message, type = 'success') {
+            const container = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.textContent = message;
+            container.appendChild(alert);
+            
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // 表单提交
+        document.getElementById('articleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 验证必填字段
+            const title = document.getElementById('title').value.trim();
+            const content = document.getElementById('content').value.trim();
+            
+            if (!title || !content) {
+                showAlert('请填写所有必填字段', 'error');
+                return;
+            }
+            
+            // 生成Markdown
+            const markdown = generateMarkdown();
+            
+            // 创建下载链接
+            const blob = new Blob([markdown], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase()}.md`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showAlert('Markdown文件已生成并下载！');
+            showPreview();
+        });
+
+        // 实时预览
+        document.getElementById('content').addEventListener('input', function() {
+            if (document.getElementById('previewSection').style.display === 'block') {
+                showPreview();
+            }
+        });
+
+        // 键盘快捷键
+        document.addEventListener('keydown', function(e) {
+            // Ctrl+S 保存
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                document.getElementById('articleForm').dispatchEvent(new Event('submit'));
+            }
+            
+            // Ctrl+Enter 添加标签
+            if (e.ctrlKey && e.key === 'Enter' && document.activeElement.id === 'tagInput') {
+                e.preventDefault();
+                addTag();
+            }
+        });
+    </script>
+</body>
+</html> 

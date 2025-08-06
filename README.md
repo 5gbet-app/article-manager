@@ -5,6 +5,8 @@
 ## 🚀 功能特性
 
 - ✅ **完整的字段支持** - 支持所有高级Markdown字段
+- ✅ **可视化编辑器** - 丰富的工具栏和实时预览
+- ✅ **YouTube视频ID简化** - 只需填写视频ID，自动生成嵌入链接
 - ✅ **响应式设计** - 适配桌面和移动设备
 - ✅ **实时预览** - 生成前可预览Markdown内容
 - ✅ **文件下载** - 自动生成并下载.md文件
@@ -31,13 +33,33 @@
 - `images` - 内容图片数组（支持多个图片）
 
 ### 多媒体内容
-- `video_url` - 视频嵌入URL
+- `video_id` - YouTube视频ID（自动生成 `https://www.youtube.com/embed/{video_id}`）
 - `game_url` - 游戏试玩URL
 - `game_title` - 游戏标题
 - `game_image` - 游戏封面图片
 
 ### 内容
 - `content` - 文章内容（必填，支持Markdown格式）
+
+## 🎨 编辑器功能
+
+### 工具栏功能
+- **文本格式**: 粗体、斜体、删除线
+- **标题**: 支持H1、H2、H3标题
+- **列表**: 无序列表和有序列表
+- **链接和图片**: 快速插入链接和图片
+- **代码**: 行内代码和代码块
+- **引用**: 引用块和分割线
+
+### 预览功能
+- **实时预览**: 编辑时实时查看渲染效果
+- **编辑/预览切换**: 一键切换编辑和预览模式
+- **语法高亮**: 预览中的代码语法高亮
+
+### 操作方式
+- **工具栏按钮**: 点击工具栏按钮插入Markdown语法
+- **键盘快捷键**: 支持常用快捷键操作
+- **智能光标**: 插入内容后自动定位光标位置
 
 ## 🛠️ 部署到GitHub Pages
 
@@ -98,12 +120,16 @@
 
 ```
 article-manager-standalone/
-├── index.html          # 主页面
-├── styles.css          # 样式文件
-├── README.md           # 说明文档
+├── index.html                    # 主编辑器页面
+├── styles.css                    # 样式文件
+├── test.html                     # 基本测试页面
+├── test-upgrade.html             # 升级功能测试页面
+├── README.md                     # 说明文档
+├── deploy.sh                     # 部署脚本
+├── start.sh                      # 本地启动脚本
 └── .github/
     └── workflows/
-        └── deploy.yml  # GitHub Actions配置
+        └── deploy.yml            # GitHub Actions配置
 ```
 
 ## 🎨 自定义样式
@@ -178,4 +204,4 @@ MIT License - 可自由使用和修改
 
 ---
 
-**文章管理模块** - 让内容创作更简单！ 🎉 # article-manager
+**文章管理模块** - 让内容创作更简单！ 🎉

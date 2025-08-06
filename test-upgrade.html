@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章管理模块 - 功能升级测试</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            max-width: 1000px;
+            margin: 100px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .test-title {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .feature-test {
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            border-left: 4px solid #ffd700;
+        }
+        .feature-title {
+            color: #ffd700;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        .test-button {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #333;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        .code-example {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">🚀 文章管理模块功能升级测试</h1>
+        
+        <div class="feature-test">
+            <h3 class="feature-title">✅ 功能1：YouTube视频ID简化</h3>
+            <p>现在用户只需填写YouTube视频ID，系统会自动生成完整的嵌入链接。</p>
+            <div class="code-example">
+                <strong>示例：</strong><br>
+                视频ID: dQw4w9WgXcQ<br>
+                自动生成: https://www.youtube.com/embed/dQw4w9WgXcQ
+            </div>
+            <a href="index.html" class="test-button">测试视频ID功能</a>
+        </div>
+        
+        <div class="feature-test">
+            <h3 class="feature-title">✅ 功能2：可视化文章编辑器</h3>
+            <p>新增了丰富的编辑器工具栏和实时预览功能。</p>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>📝 工具栏：粗体、斜体、删除线、标题、列表等</li>
+                <li>🔗 链接和图片插入</li>
+                <li>💻 代码块和行内代码</li>
+                <li>📋 引用和分割线</li>
+                <li>👁️ 实时预览功能</li>
+                <li>⌨️ 键盘快捷键支持</li>
+            </ul>
+            <a href="index.html" class="test-button">测试编辑器功能</a>
+        </div>
+        
+        <div class="feature-test">
+            <h3 class="feature-title">🎨 编辑器工具栏功能</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 6px;">
+                    <strong>文本格式</strong><br>
+                    • 粗体 (Ctrl+B)<br>
+                    • 斜体 (Ctrl+I)<br>
+                    • 删除线
+                </div>
+                <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 6px;">
+                    <strong>标题</strong><br>
+                    • 标题1 (#)<br>
+                    • 标题2 (##)<br>
+                    • 标题3 (###)
+                </div>
+                <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 6px;">
+                    <strong>列表</strong><br>
+                    • 无序列表 (-)<br>
+                    • 有序列表 (1.)
+                </div>
+                <div style="background: rgba(255,215,0,0.1); padding: 10px; border-radius: 6px;">
+                    <strong>其他</strong><br>
+                    • 链接<br>
+                    • 图片<br>
+                    • 代码块<br>
+                    • 引用
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-test">
+            <h3 class="feature-title">📱 响应式设计</h3>
+            <p>所有新功能都支持移动端，工具栏在手机上会自动调整为垂直布局。</p>
+            <div style="text-align: center; margin: 20px 0;">
+                <a href="index.html" class="test-button">在桌面端测试</a>
+                <a href="index.html" class="test-button">在移动端测试</a>
+            </div>
+        </div>
+        
+        <div class="feature-test">
+            <h3 class="feature-title">🔧 技术特性</h3>
+            <ul style="margin: 15px 0; padding-left: 20px;">
+                <li>✅ 纯JavaScript实现，无需额外依赖</li>
+                <li>✅ 保持原有Markdown语法兼容性</li>
+                <li>✅ 实时预览和编辑切换</li>
+                <li>✅ 光标位置智能定位</li>
+                <li>✅ 键盘快捷键支持</li>
+                <li>✅ 响应式设计</li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="test-button" style="font-size: 18px; padding: 15px 30px;">
+                🚀 开始使用升级版编辑器
+            </a>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: rgba(0,0,0,0.2); border-radius: 8px; text-align: center;">
+            <p style="color: #ffd700; font-weight: 600;">升级完成！</p>
+            <p style="font-size: 0.9em; opacity: 0.8;">
+                所有功能已升级完成，现在可以享受更便捷的文章编辑体验！
+            </p>
+        </div>
+    </div>
+</body>
+</html> 

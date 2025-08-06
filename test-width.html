@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑区域宽度测试</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .test-title {
+            color: #ffd700;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .width-indicator {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 10px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 class="test-title">📏 编辑区域宽度测试</h1>
+        
+        <div class="width-indicator">
+            <strong>容器宽度:</strong> <span id="containerWidth">计算中...</span>
+        </div>
+        
+        <!-- 测试表单组 -->
+        <div class="form-section">
+            <h3 class="form-section-title">📝 测试表单</h3>
+            <div class="form-group">
+                <label class="form-label">普通输入框</label>
+                <input type="text" class="form-input" placeholder="测试输入框宽度">
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label">文本区域</label>
+                <textarea class="form-textarea" placeholder="测试文本区域宽度" style="min-height: 100px;"></textarea>
+            </div>
+        </div>
+        
+        <!-- 测试编辑器 -->
+        <div class="form-section">
+            <h3 class="form-section-title">📄 测试编辑器</h3>
+            <div class="form-group">
+                <label class="form-label">编辑器内容</label>
+                
+                <!-- 工具栏 -->
+                <div class="editor-toolbar">
+                    <button type="button" class="toolbar-btn" title="粗体">
+                        <i class="fas fa-bold"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" title="斜体">
+                        <i class="fas fa-italic"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" title="标题">
+                        <i class="fas fa-heading"></i>1
+                    </button>
+                </div>
+                
+                <!-- 编辑器 -->
+                <div class="editor-container">
+                    <textarea class="editor-textarea" placeholder="测试编辑器宽度" style="min-height: 200px;"></textarea>
+                </div>
+                
+                <!-- 标签切换 -->
+                <div class="editor-tabs">
+                    <button type="button" class="tab-btn active">
+                        <i class="fas fa-edit"></i> 编辑
+                    </button>
+                    <button type="button" class="tab-btn">
+                        <i class="fas fa-eye"></i> 预览
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="width-indicator">
+            <strong>编辑器宽度:</strong> <span id="editorWidth">计算中...</span>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="index.html" class="btn btn-primary">返回主编辑器</a>
+        </div>
+    </div>
+    
+    <script>
+        // 计算并显示宽度
+        function updateWidths() {
+            const container = document.querySelector('.test-container');
+            const editor = document.querySelector('.editor-container');
+            
+            document.getElementById('containerWidth').textContent = 
+                container.offsetWidth + 'px';
+            document.getElementById('editorWidth').textContent = 
+                editor.offsetWidth + 'px';
+        }
+        
+        // 页面加载后计算宽度
+        window.addEventListener('load', updateWidths);
+        window.addEventListener('resize', updateWidths);
+    </script>
+</body>
+</html> 
